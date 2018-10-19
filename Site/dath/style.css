@@ -1,0 +1,65 @@
+html {scroll-behavior:smooth}
+
+::selection {
+  background: #c00;
+    color: white;
+}
+::-moz-selection {
+  background: #c00;
+    color: white;
+}
+
+section:before {
+  height: 50px;
+  display: block;
+  content: '';
+}
+
+section#perfil:before, section#agendar:before {
+    display: none;
+}
+
+img.foto {
+    transition: transform .3s ease-in-out;
+}
+
+img.foto:hover {
+    transform: scale(1.05) rotate(-5deg);
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    background: #9a0000;
+/*    border-radius: 3px;*/
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    background: #800000;
+}
+
+img.aumenta {
+    transition: transform .2s ease-in-out;
+}
+
+img.aumenta:hover {
+    transform: scale(1.05);
+}
+
+.form-control:focus, .custom-select:focus {
+    border-color: #ff8380;
+    box-shadow: 0 0 0 0.2rem rgba(255, 5, 0, 0.25);
+}
+

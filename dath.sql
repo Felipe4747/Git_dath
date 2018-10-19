@@ -8,7 +8,7 @@ create table usuario (
 	Email VARCHAR(70) UNIQUE NOT NULL,
 	Senha VARCHAR(70) NOT NULL,
     Tel CHAR(13) NOT NULL,
-    CPF char(13) UNIQUE NOT NULL,
+    CPF char(14) UNIQUE NOT NULL,
     Nasc date not null,
     Tipo_S enum('A+','A-','B+','B-','O+','O-','AB+','AB-') not null,
     Sexo enum('Masculino','Feminino') not null
