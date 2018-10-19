@@ -2,16 +2,16 @@ create database dath character set = utf8mb4 COLLATE utf8mb4_unicode_ci;
 use dath;
 
 #Tabela com os dados dos usuários
-create table usuario (
-	Id INTEGER not null  primary key AUTO_INCREMENT,
-	Nome varchar(50) NOT NULL,
-	Email VARCHAR(70) UNIQUE NOT NULL,
-	Senha VARCHAR(70) NOT NULL,
+CREATE TABLE usuario (
+    Id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(50) NOT NULL,
+    Email VARCHAR(70) UNIQUE NOT NULL,
+    Senha VARCHAR(70) NOT NULL,
     Tel CHAR(13) NOT NULL,
-    CPF char(14) UNIQUE NOT NULL,
-    Nasc date not null,
-    Tipo_S enum('A+','A-','B+','B-','O+','O-','AB+','AB-') not null,
-    Sexo enum('Masculino','Feminino') not null
+    CPF CHAR(14) UNIQUE NOT NULL,
+    Nasc DATE NOT NULL,
+    Tipo_S ENUM('A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-') NOT NULL,
+    Sexo ENUM('Masculino', 'Feminino') NOT NULL
 );
 
 #Exacon = Exames e Consultas
