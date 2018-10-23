@@ -9,6 +9,6 @@ Na pasta C:\Users\SeuUsuario\Documents\GitHub\Git_dath\Site, copie a pasta "dath
 
 Cole a pasta em C:\xampp\htdocs;
 
-*Certifique-se de ligar o Apache e o MySQL estão ligados*
+*Certifique-se de ligar o Apache e o MySQL no XAMPP*
 
 No navegador, digite "localhost/dath".
