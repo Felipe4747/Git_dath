@@ -1,13 +1,16 @@
-Git_dath
-RepositÛrio projeto de PIA e PMS
-Como utilizar o site (Utilizando o XAMPP):
+# Git_dath
+## Reposit√≥rio projeto de PIA e PMS
 
-Baixe o repositÛrio;
+### Como utilizar o site (Utilizando o XAMPP): 
+
+Baixe o reposit√≥rio;
 
 Na pasta C:\Users\SeuUsuario\Documents\GitHub\Git_dath\Site, copie a pasta "dath";
 
 Cole a pasta em C:\xampp\htdocs;
 
-Certifique-se de ligar o Apache e o MySQL no XAMPP
+_**Certifique-se de ligar o Apache e o MySQL no XAMPP**_
+
+_**Executar o script SQL do reposit√≥rio**_
 
 No navegador, digite "localhost/dath".
