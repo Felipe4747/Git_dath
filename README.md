@@ -11,4 +11,6 @@ Cole a pasta em C:\xampp\htdocs;
 
 _**Certifique-se de ligar o Apache e o MySQL no XAMPP**_
 
+_**Executar o script SQL do repositório**_
+
 No navegador, digite "localhost/dath".
