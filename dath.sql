@@ -3,15 +3,15 @@ use dath;
 
 #Tabela com os dados dos usuários
 CREATE TABLE usuario (
-    Id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    Nome VARCHAR(50) NOT NULL,
-    Email VARCHAR(70) UNIQUE NOT NULL,
-    Senha VARCHAR(70) NOT NULL,
-    Tel CHAR(13) NOT NULL,
+    id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    email VARCHAR(70) UNIQUE NOT NULL,
+    senha VARCHAR(70) NOT NULL,
+    tel CHAR(13) NOT NULL,
     CPF CHAR(14) UNIQUE NOT NULL,
-    Nasc DATE NOT NULL,
-    Tipo_S ENUM('A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-') NOT NULL,
-    Sexo ENUM('Masculino', 'Feminino') NOT NULL
+    nasc DATE NOT NULL,
+    tipo_s ENUM('A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-') NOT NULL,
+    sexo ENUM('Masculino', 'Feminino') NOT NULL
 );
 
 #Exacon = Exames e Consultas
