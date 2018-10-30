@@ -15,14 +15,42 @@ CREATE TABLE usuario (
 );
 
 #Exacon = Exames e Consultas
-create table exacon (
-	Id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    Tipo ENUM('Exame', 'Consulta') NOT NULL,
-    Hospital VARCHAR(50) NOT NULL,
-    Medico VARCHAR(30) NOT NULL,
-    Horario DATETIME NOT NULL,
-	Id_Usuario int,
-    constraint fk_UsuarioExacon foreign key (Id_Usuario) references Usuario (Id)
+create table Hospital (
+	id int not null auto_increment,
+    nome varchar(50) not null,
+    cep int not null,
+    pais char(2),
+    estado char(2) not null,
+    cidade varchar(60) not null,
+    rua varchar(50) not null,
+    num_predio int not null,
+    primary key(id)
 );
 
+create table Medico(
+	id int not null auto_increment,
+    nome varchar(50) not null,
+    crm int not null,
+    primary key(id)
+);
+
+create table Exacon (
+	id int not null auto_increment,
+	id_hospital int not null,
+    id_medico int not null,
+    Horario DATETIME NOT NULL,
+	Id_Usuario int,
+    primary key(id),
+    constraint fk_UsuarioExacon foreign key(id_Usuario) references Usuario(id),
+    constraint fk_HospitalExacon foreign key(id_Hospital) references Hospital(id),
+    constraint fk_MedicoExacon foreign key(id_Medico) references Medico(id)
+);
+
+create table Exa(
+	id int not null auto_increment,
+	id_exacon int not null,
+    tipo varchar(100) not null,
+    primary key(id),
+    constraint fk_ExaCon foreign key(id_exacon) references Exacon(id)
+);
 #ALTER TABLE exacon AUTO_INCREMENT = 1;
