@@ -1,21 +1,25 @@
-html {scroll-behavior:smooth}
+html {
+    scroll-behavior: smooth;
+}
 
 ::selection {
-  background: #c00;
+    background: #c00;
     color: white;
 }
+
 ::-moz-selection {
-  background: #c00;
+    background: #c00;
     color: white;
 }
 
 section:before {
-  height: 50px;
-  display: block;
-  content: '';
+    height: 50px;
+    display: block;
+    content: '';
 }
 
-section#perfil:before, section#agendar:before {
+section#perfil:before,
+section#agendar:before {
     display: none;
 }
 
@@ -41,7 +45,7 @@ img.foto:hover {
 ::-webkit-scrollbar-thumb {
     background: #888;
     background: #9a0000;
-/*    border-radius: 3px;*/
+    /*    border-radius: 3px;*/
 }
 
 /* Handle on hover */
@@ -58,8 +62,8 @@ img.aumenta:hover {
     transform: scale(1.05);
 }
 
-.form-control:focus, .custom-select:focus {
+.form-control:focus,
+.custom-select:focus {
     border-color: #ff8380;
     box-shadow: 0 0 0 0.2rem rgba(255, 5, 0, 0.25);
 }
-
