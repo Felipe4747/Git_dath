@@ -225,6 +225,13 @@
                                 <option>O-</option>
                             </select>
                         </div>
+                        <div class="form-group col-sm-4">
+                            <label for="conv">Convênio:</label><br>
+                            <select name="conv" class="custom-select">
+                                <option selected>Nenhum</option>
+                                <option>--</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-sm-4 btn-group btn-group-toggle" data-toggle="buttons">

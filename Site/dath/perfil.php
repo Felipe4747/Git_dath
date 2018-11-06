@@ -107,7 +107,7 @@
         </div>
     </section>
     <!--Tabela exames-->
-    <div class="container">
+    <div class="container col-sm-10">
         <h1 class="text-center mb-4 mt-4 display-4">Exames e Consultas</h1>
         <input class="form-control form-control-lg mb-4" id="pesquisa" type="text" placeholder="Pesquisar exames e consultas...">
         <table class="table table-striped border mb-5 text-center">
@@ -117,6 +117,7 @@
                     <th>Hospital</th>
                     <th>Médico</th>
                     <th>Horário</th>
+                    <th>Endereço</th>
                 </tr>
             </thead>
             <tbody id="exacon">
@@ -143,6 +144,7 @@
                             echo "<td>--</td>";
                             echo "<td>--</td>";
                             echo "<td>--</td>";
+                            echo "<td>--</td>";
                             echo "</tr>";
                         }
                     ?>
@@ -154,7 +156,7 @@
     </div>
     <!--Agendar-->
     <section class="container-fluid bg-light" id="agendar" style="padding: 30px;">
-        <div class="container">
+        <div class="container col-sm-10">
             <h1 class="text-center mb-4 display-4">Agendar</h1>
             <div class="col-sm-12 mx-auto bg-white rounded p-4 border">
                 <form method="post" action="exacon.php">
