@@ -128,7 +128,10 @@
                         $res = $conn->query($sql);
                     
                         if ($res->fetchColumn() > 0){
-                            $sql = "SELECT * FROM exacon where id_usuario = (select id from usuario where email = '$emailatual') order by horario asc";
+                            $sql = "SELECT hospital.nome as Hospital, medico.nome as Medico, exacon.horario as Horario from exacon
+                                    left join hospital on exacon.id_hospital = hospital.id
+                                    left join medico on exacon.id_medico = medico.id
+                                    where exacon.id_usuario = (select id from usuario where email = '$emailatual') order by exacon.horario asc";
 
                             foreach ($conn->query($sql) as $row) {
                                 echo "<tr>";
@@ -136,6 +139,12 @@
                                 echo "<td>" . $row['Hospital'] . "</td>";
                                 echo "<td>" . $row['Medico'] . "</td>";
                                 echo "<td>" . $row['Horario'] . "</td>";
+                                $sql2 = "select concat(estado.nome, ', ',cidade.nome, ', ', rua.nome, ', ', endereco.num_predio) from endereco 
+                                        left join estado on endereco.id_estado = estado.id
+                                        left join cidade on endereco.id_cidade = cidade.id
+                                        left join rua on endereco.id_rua = rua.id;";
+                                $res2 = $conn->query($sql2);
+                                echo "<td>" . $res2->fetchColumn() . "</td>";
                                 echo "</tr>";
                             }
                         } else {
