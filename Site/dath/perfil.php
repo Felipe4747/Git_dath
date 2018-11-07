@@ -128,23 +128,22 @@
                         $res = $conn->query($sql);
                     
                         if ($res->fetchColumn() > 0){
-                            $sql = "SELECT hospital.nome as Hospital, medico.nome as Medico, exacon.horario as Horario from exacon
+                            $sql = "SELECT hospital.nome as Hospital, medico.nome as Medico, exacon.horario as Horario, concat(estado.nome, ', ',cidade.nome, ', ', rua.nome, ', ', endereco.num_predio) as Endereco from exacon
                                     left join hospital on exacon.id_hospital = hospital.id
                                     left join medico on exacon.id_medico = medico.id
+                                    inner join endereco on hospital.id_endereco = endereco.id
+                                    left join estado on endereco.id_estado = estado.id
+                                    left join cidade on endereco.id_cidade = cidade.id
+                                    left join rua on endereco.id_rua = rua.id
                                     where exacon.id_usuario = (select id from usuario where email = '$emailatual') order by exacon.horario asc";
-
+                            
                             foreach ($conn->query($sql) as $row) {
                                 echo "<tr>";
                                 echo "<td>" . $row['Tipo'] . "</td>";
                                 echo "<td>" . $row['Hospital'] . "</td>";
                                 echo "<td>" . $row['Medico'] . "</td>";
                                 echo "<td>" . $row['Horario'] . "</td>";
-                                $sql2 = "select concat(estado.nome, ', ',cidade.nome, ', ', rua.nome, ', ', endereco.num_predio) from endereco 
-                                        left join estado on endereco.id_estado = estado.id
-                                        left join cidade on endereco.id_cidade = cidade.id
-                                        left join rua on endereco.id_rua = rua.id;";
-                                $res2 = $conn->query($sql2);
-                                echo "<td>" . $res2->fetchColumn() . "</td>";
+                                echo "<td>" . $row['Endereco'] . "</td>";
                                 echo "</tr>";
                             }
                         } else {
