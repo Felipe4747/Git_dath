@@ -107,13 +107,14 @@
         </div>
     </section>
     <!--Tabela exames-->
-    <div class="container col-sm-10">
+    <div class="container col-sm-8">
         <h1 class="text-center mb-4 mt-4 display-4">Exames</h1>
         <input class="form-control form-control-lg mb-4" id="pesquisaexa" type="text" placeholder="Pesquisar exames...">
         <div class="table-wrapper-scroll-y">
             <table class="table table-striped border mb-5 text-justify">
                 <thead>
                     <tr>
+                        <th>Tipo</th>
                         <th>Hospital</th>
                         <th>Médico</th>
                         <th>Horário</th>
@@ -130,7 +131,7 @@
                         $res = $conn->query($sql);
                     
                         if ($res->fetchColumn() > 0){
-                            $sql = "SELECT hospital.nome as Hospital, if(exa.id_exacon is null, 'Consulta', 'Exame') as Tipo , medico.nome as Medico, concat(day(exacon.horario), '/', month(exacon.horario),'/', year(exacon.horario), ' ', time(exacon.horario)) as Horario, concat(rua.nome, ', ', endereco.num_predio, ' - ', cidade.nome, ', ', estado.nome, ', ', pais.nome) as Endereco from exacon
+                            $sql = "SELECT exa.tipo as Tipo, hospital.nome as Hospital, medico.nome as Medico, concat(day(exacon.horario), '/', month(exacon.horario),'/', year(exacon.horario), ' ', time(exacon.horario)) as Horario, concat(rua.nome, ', ', endereco.num_predio, ' - ', cidade.nome, ', ', estado.nome, ', ', pais.nome) as Endereco from exacon
                                     left join hospital on exacon.id_hospital = hospital.id
                                     left join medico on exacon.id_medico = medico.id
                                     left join exa on exacon.id = exa.id_exacon
@@ -143,6 +144,7 @@
                             
                             foreach ($conn->query($sql) as $row) {
                                 echo "<tr>";
+                                echo "<td>" . $row['Tipo'] . "</td>";
                                 echo "<td>" . $row['Hospital'] . "</td>";
                                 echo "<td>" . $row['Medico'] . "</td>";
                                 echo "<td>" . $row['Horario'] . "</td>";
@@ -151,6 +153,7 @@
                             }
                         } else {
                             echo "<tr>";
+                            echo "<td>--</td>";
                             echo "<td>--</td>";
                             echo "<td>--</td>";
                             echo "<td>--</td>";
@@ -165,7 +168,7 @@
     <!--Hospitalzinho img-->
     <div class="jumbotron jumbotron-fluid mb-0" style="height: 10rem; background-image: url(img/albert.jpg); background-attachment: fixed; background-position: center; background-size: cover">
     </div>
-    <div class="container col-sm-10">
+    <div class="container col-sm-8">
         <h1 class="text-center mb-4 mt-4 display-4">Consultas</h1>
         <input class="form-control form-control-lg mb-4" id="pesquisacon" type="text" placeholder="Pesquisar consultas...">
         <div class="table-wrapper-scroll-y">
@@ -270,7 +273,8 @@
     </section>
     <!--Footer-->
     <div class="jumbotron jumbotron-fluid text-center bg-dark" style="margin-bottom:0; background-color: #c00;">
-        <p class="text-white">Copyright &copy; 2018 DATH - All rights reserved.</p>
+        <p class="text-white">Copyright &copy;
+            <?php echo date("Y"); ?> DATH - All rights reserved.</p>
     </div>
     <!-- Optional JavaScript -->
     <script>

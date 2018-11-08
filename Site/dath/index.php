@@ -288,7 +288,8 @@
     </section>
     <!--Footer-->
     <div class="jumbotron jumbotron-fluid text-center bg-dark" style="margin-bottom:0; background-color: #c00;">
-        <p class="text-white">Copyright &copy; 2018 DATH - All rights reserved.</p>
+        <p class="text-white">Copyright &copy;
+            <?php echo date("Y"); ?> DATH - All rights reserved.</p>
     </div>
     <!-- Optional JavaScript -->
     <script>
