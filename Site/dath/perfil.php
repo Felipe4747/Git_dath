@@ -131,7 +131,7 @@
                         $res = $conn->query($sql);
                     
                         if ($res->fetchColumn() > 0){
-                            $sql = "SELECT exa.tipo as Tipo, hospital.nome as Hospital, medico.nome as Medico, concat(day(exacon.horario), '/', month(exacon.horario),'/', year(exacon.horario), ' ', time(exacon.horario)) as Horario, concat(rua.nome, ', ', endereco.num_predio, ' - ', cidade.nome, ', ', estado.nome, ', ', pais.nome) as Endereco from exacon
+                            $sql = "SELECT exa.tipo as Tipo, hospital.nome as Hospital, medico.nome as Medico, date_format(horario, '%d/%m/%y %H:%i') as Horario, concat(rua.nome, ', ', endereco.num_predio, ' - ', cidade.nome, ', ', estado.nome, ', ', pais.nome) as Endereco from exacon
                                     left join hospital on exacon.id_hospital = hospital.id
                                     left join medico on exacon.id_medico = medico.id
                                     left join exa on exacon.id = exa.id_exacon
@@ -191,7 +191,7 @@
                         $res = $conn->query($sql);
                     
                         if ($res->fetchColumn() > 0){
-                            $sql = "SELECT hospital.nome as Hospital, if(exa.id_exacon is null, 'Consulta', 'Exame') as Tipo , medico.nome as Medico, concat(day(exacon.horario), '/', month(exacon.horario),'/', year(exacon.horario), ' ', time(exacon.horario)) as Horario, concat(rua.nome, ', ', endereco.num_predio, ' - ', cidade.nome, ', ', estado.nome, ', ', pais.nome) as Endereco from exacon
+                            $sql = "SELECT hospital.nome as Hospital, if(exa.id_exacon is null, 'Consulta', 'Exame') as Tipo , medico.nome as Medico, date_format(horario, '%d/%m/%y %H:%i') as Horario, concat(rua.nome, ', ', endereco.num_predio, ' - ', cidade.nome, ', ', estado.nome, ', ', pais.nome) as Endereco from exacon
                                     left join hospital on exacon.id_hospital = hospital.id
                                     left join medico on exacon.id_medico = medico.id
                                     left join exa on exacon.id = exa.id_exacon
