@@ -38,7 +38,7 @@ create table Medico(
 
 insert into Medico values
 	(default, 'Aline Fernanda', 2701, 1),
-	(default, 'Denis Campus', 7498, null),
+	(default, 'Denis Campos', 7498, null),
 	(default, 'Evelyn Pedrosa', 6492, 1);
 
 #Endereço
@@ -80,8 +80,8 @@ create table Rua(
 );
 
 insert into Rua values
-	(null, 'Av Miguel Varlez'),
-	(null, 'Av Anchieta'),
+	(null, 'Av. Miguel Varlez'),
+	(null, 'Av. Anchieta'),
 	(null, 'Av. Rio Grande do Sul');
 
 create table Endereco(
@@ -116,8 +116,8 @@ create table Hospital (
 );
 
 insert into Hospital values
-	(null, 'Casa de saúde Stella Maris', 1, null),
-	(null, 'Hospital de olhos e clínicas - HOC', 2, 1),
+	(null, 'Casa de Saúde Stella Maris', 1, null),
+	(null, 'Hospital de Olhos e Clínicas - HOC', 2, 1),
 	(null, 'Santa Casa', 1, null),
 	(null, 'Hospital Santos Dumont', 3, 1);
 
