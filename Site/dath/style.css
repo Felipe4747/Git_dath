@@ -67,3 +67,11 @@ img.aumenta:hover {
     border-color: #ff8380;
     box-shadow: 0 0 0 0.2rem rgba(255, 5, 0, 0.25);
 }
+
+.table-wrapper-scroll-y {
+    display: block;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}

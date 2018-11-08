@@ -108,38 +108,41 @@
     </section>
     <!--Tabela exames-->
     <div class="container col-sm-10">
-        <h1 class="text-center mb-4 mt-4 display-4">Exames e Consultas</h1>
-        <input class="form-control form-control-lg mb-4" id="pesquisa" type="text" placeholder="Pesquisar exames e consultas...">
-        <table class="table table-striped border mb-5 text-center">
-            <thead>
-                <tr>
-                    <th>Tipo</th>
-                    <th>Hospital</th>
-                    <th>Médico</th>
-                    <th>Horário</th>
-                    <th>Endereço</th>
-                </tr>
-            </thead>
-            <tbody id="exacon">
-                <?php
+        <h1 class="text-center mb-4 mt-4 display-4">Exames</h1>
+        <input class="form-control form-control-lg mb-4" id="pesquisaexa" type="text" placeholder="Pesquisar exames...">
+        <div class="table-wrapper-scroll-y">
+            <table class="table table-striped border mb-5 text-justify">
+                <thead>
+                    <tr>
+                        <th>Hospital</th>
+                        <th>Médico</th>
+                        <th>Horário</th>
+                        <th>Endereço</th>
+                    </tr>
+                </thead>
+                <tbody id="exa" style="max-height: 40px; overflow: scroll;">
+                    <?php
                         include("conexao.php");
                         $emailatual = $_SESSION["email"];
-                        $sql = "SELECT count(*) FROM exacon where id_usuario = (select id from usuario where email = '$emailatual')";
+                        $sql = "SELECT count(*) FROM exacon 
+                        left join exa on exacon.id = exa.id_exacon
+                        where id_usuario = (select id from usuario where email = '$emailatual') and exa.id_exacon is not null";
                         $res = $conn->query($sql);
                     
                         if ($res->fetchColumn() > 0){
-                            $sql = "SELECT hospital.nome as Hospital, medico.nome as Medico, exacon.horario as Horario, concat(estado.nome, ', ',cidade.nome, ', ', rua.nome, ', ', endereco.num_predio) as Endereco from exacon
+                            $sql = "SELECT hospital.nome as Hospital, if(exa.id_exacon is null, 'Consulta', 'Exame') as Tipo , medico.nome as Medico, concat(day(exacon.horario), '/', month(exacon.horario),'/', year(exacon.horario), ' ', time(exacon.horario)) as Horario, concat(rua.nome, ', ', endereco.num_predio, ' - ', cidade.nome, ', ', estado.nome, ', ', pais.nome) as Endereco from exacon
                                     left join hospital on exacon.id_hospital = hospital.id
                                     left join medico on exacon.id_medico = medico.id
+                                    left join exa on exacon.id = exa.id_exacon
                                     inner join endereco on hospital.id_endereco = endereco.id
-                                    left join estado on endereco.id_estado = estado.id
-                                    left join cidade on endereco.id_cidade = cidade.id
-                                    left join rua on endereco.id_rua = rua.id
-                                    where exacon.id_usuario = (select id from usuario where email = '$emailatual') order by exacon.horario asc";
+                                    inner join pais on endereco.id_pais = pais.id
+                                    inner join estado on endereco.id_estado = estado.id
+                                    inner join cidade on endereco.id_cidade = cidade.id
+                                    inner join rua on endereco.id_rua = rua.id
+                                    where exacon.id_usuario = (select id from usuario where email = '$emailatual') and exa.id_exacon is not null order by exacon.horario asc";
                             
                             foreach ($conn->query($sql) as $row) {
                                 echo "<tr>";
-                                echo "<td>" . $row['Tipo'] . "</td>";
                                 echo "<td>" . $row['Hospital'] . "</td>";
                                 echo "<td>" . $row['Medico'] . "</td>";
                                 echo "<td>" . $row['Horario'] . "</td>";
@@ -152,14 +155,71 @@
                             echo "<td>--</td>";
                             echo "<td>--</td>";
                             echo "<td>--</td>";
+                            echo "</tr>";
+                        }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--Hospitalzinho img-->
+    <div class="jumbotron jumbotron-fluid mb-0" style="height: 10rem; background-image: url(img/albert.jpg); background-attachment: fixed; background-position: center; background-size: cover">
+    </div>
+    <div class="container col-sm-10">
+        <h1 class="text-center mb-4 mt-4 display-4">Consultas</h1>
+        <input class="form-control form-control-lg mb-4" id="pesquisacon" type="text" placeholder="Pesquisar consultas...">
+        <div class="table-wrapper-scroll-y">
+            <table class="table table-striped border mb-5 text-justify">
+                <thead>
+                    <tr>
+                        <th>Hospital</th>
+                        <th>Médico</th>
+                        <th>Horário</th>
+                        <th>Endereço</th>
+                    </tr>
+                </thead>
+                <tbody id="con" style="max-height: 40px; overflow: scroll;">
+                    <?php
+                        include("conexao.php");
+                        $emailatual = $_SESSION["email"];
+                        $sql = "SELECT count(*) FROM exacon 
+                        left join exa on exacon.id = exa.id_exacon
+                        where id_usuario = (select id from usuario where email = '$emailatual') and exa.id_exacon is null";
+                        $res = $conn->query($sql);
+                    
+                        if ($res->fetchColumn() > 0){
+                            $sql = "SELECT hospital.nome as Hospital, if(exa.id_exacon is null, 'Consulta', 'Exame') as Tipo , medico.nome as Medico, concat(day(exacon.horario), '/', month(exacon.horario),'/', year(exacon.horario), ' ', time(exacon.horario)) as Horario, concat(rua.nome, ', ', endereco.num_predio, ' - ', cidade.nome, ', ', estado.nome, ', ', pais.nome) as Endereco from exacon
+                                    left join hospital on exacon.id_hospital = hospital.id
+                                    left join medico on exacon.id_medico = medico.id
+                                    left join exa on exacon.id = exa.id_exacon
+                                    inner join endereco on hospital.id_endereco = endereco.id
+                                    inner join pais on endereco.id_pais = pais.id
+                                    inner join estado on endereco.id_estado = estado.id
+                                    inner join cidade on endereco.id_cidade = cidade.id
+                                    inner join rua on endereco.id_rua = rua.id
+                                    where exacon.id_usuario = (select id from usuario where email = '$emailatual') and exa.id_exacon is null order by exacon.horario asc";
+                            
+                            foreach ($conn->query($sql) as $row) {
+                                echo "<tr>";
+                                echo "<td>" . $row['Hospital'] . "</td>";
+                                echo "<td>" . $row['Medico'] . "</td>";
+                                echo "<td>" . $row['Horario'] . "</td>";
+                                echo "<td>" . $row['Endereco'] . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr>";
+                            echo "<td>--</td>";
+                            echo "<td>--</td>";
+                            echo "<td>--</td>";
                             echo "<td>--</td>";
                             echo "</tr>";
                         }
                     ?>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <!--Hospitalzinho img-->
     <div class="jumbotron jumbotron-fluid mb-0" style="height: 10rem; background-image: url(img/albert.jpg); background-attachment: fixed; background-position: center; background-size: cover">
     </div>
     <!--Agendar-->
@@ -228,9 +288,15 @@
     </script>
     <script>
         $(document).ready(function() {
-            $("#pesquisa").on("keyup", function() {
+            $("#pesquisaexa").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
-                $("#exacon tr").filter(function() {
+                $("#exa tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+            $("#pesquisacon").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#con tr").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
