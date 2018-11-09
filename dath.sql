@@ -31,15 +31,24 @@ create table Medico(
 	id int not null auto_increment,
     nome varchar(50) not null,
     crm int not null,
-    id_convenio int,
-    primary key(id),
-    constraint fk_ConvenioMedico foreign key(id_convenio) references Convenio(id)
+    primary key(id)
 );
 
 insert into Medico values
-	(default, 'Aline Fernanda', 2701, 1),
-	(default, 'Denis Campos', 7498, null),
-	(default, 'Evelyn Pedrosa', 6492, 1);
+	(default, 'Aline Fernanda', 2701),
+	(default, 'Denis Campos', 7498),
+	(default, 'Evelyn Pedrosa', 6492);
+
+create table MedicoConvenio(
+	id_medico int not null auto_increment,
+    id_convenio int not null auto_increment,
+    constraint fk_MedicoConvenio foreign key(id_medico) references Medico(id),
+    constraint fk_ConvenioMedico foreign key(id_convenio) references Convenio(id)
+);
+
+insert into MedicoConvenio values
+	(1, 1),
+	(3, 1);
 
 #Endereço
 create table Pais(
@@ -109,17 +118,22 @@ create table Hospital (
 	id int auto_increment not null auto_increment,
     nome varchar(50) not null,
     id_endereco int not null,
-    id_convenio int,
     primary key(id),
-    constraint fk_EnderecoHospital foreign key(id_endereco) references Endereco(id),
-	constraint fk_ConvenioHospital foreign key(id_convenio) references Convenio(id)
+    constraint fk_EnderecoHospital foreign key(id_endereco) references Endereco(id)
 );
 
 insert into Hospital values
-	(null, 'Casa de Saúde Stella Maris', 1, null),
-	(null, 'Hospital de Olhos e Clínicas - HOC', 2, 1),
+	(null, 'Casa de Saúde Stella Maris', 1),
+	(null, 'Hospital de Olhos e Clínicas - HOC', 2),
 	(null, 'Santa Casa', 1, null),
-	(null, 'Hospital Santos Dumont', 3, 1);
+	(null, 'Hospital Santos Dumont', 3);
+
+create table HospitalConvenio(
+	id_hospital int not null auto_increment,
+    id_convenio int not null auto_increment,
+    constraint fk_HospitalConvenio foreign key(id_hospital) references Hospital(id),
+    constraint fk_ConvenioHospital foreign key(id_convenio) references Convenio(id)
+);
 
 #Exa/Con
 create table Exacon (
