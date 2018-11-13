@@ -91,7 +91,10 @@ create table Rua(
 insert into Rua values
 	(null, 'Av. Miguel Varlez'),
 	(null, 'Av. Anchieta'),
-	(null, 'Av. Rio Grande do Sul');
+	(null, 'Av. Rio Grande do Sul'),
+    (null, 'Indaiá'),
+    (null, 'Av. Pres. Castelo Branco'),
+    (null, 'AV. Maranhão');
 
 create table Endereco(
 	id int auto_increment not null auto_increment,
@@ -126,7 +129,10 @@ insert into Hospital values
 	(null, 'Casa de Saúde Stella Maris', 1),
 	(null, 'Hospital de Olhos e Clínicas - HOC', 2),
 	(null, 'Santa Casa', 1, null),
-	(null, 'Hospital Santos Dumont', 3);
+	(null, 'Hospital Santos Dumont', 3),
+    (null, 'AME', 4),
+    (null, 'Centro Médico São Camilo', 5),
+    (null, 'Madre Tereza - CEAMI', 6);
 
 create table HospitalConvenio(
 	id_hospital int not null auto_increment,
