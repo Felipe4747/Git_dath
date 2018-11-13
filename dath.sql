@@ -5,6 +5,7 @@ use dath;
 #Usuario/Médico/Convênio
 create table Convenio(
 	id int auto_increment not null,
+    tipo enum('Empresarial', 'Pessoal', 'Coletivo'),
     contratada varchar(30),
     primary key(id)
 );
