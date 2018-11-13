@@ -115,8 +115,10 @@ create table Endereco(
 insert into Endereco values
 	(null, 1, 1, 1, 1, 980, 11660650),
 	(null, 1, 1, 1, 2, 215, 11660010),
-	(null, 1, 1, 1, 3, 1750, 11665030);
-
+	(null, 1, 1, 1, 3, 1750, 11665030),
+    (null, 1, 1, 1, 4, 854, 11675050),
+    (null, 1, 1, 1, 5, 349, 11661200),
+    (null, 1, 1, 1, 6, 219, 11660660);
 #Hospital    
 create table Hospital (
 	id int auto_increment not null auto_increment,
