@@ -93,7 +93,7 @@ insert into Rua values
 	(null, 'Av. Miguel Varlez'),
 	(null, 'Av. Anchieta'),
 	(null, 'Av. Rio Grande do Sul'),
-    (null, 'Indaiá'),
+    (null, 'Rua Indaiá'),
     (null, 'Av. Pres. Castelo Branco'),
     (null, 'AV. Maranhão');
 
