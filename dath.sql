@@ -94,7 +94,7 @@ insert into Rua values
 	(null, 'Av. Rio Grande do Sul'),
     (null, 'Rua Indaiá'),
     (null, 'Av. Pres. Castelo Branco'),
-    (null, 'AV. Maranhão');
+    (null, 'Av. Maranhão');
 
 create table Endereco(
 	id int auto_increment not null auto_increment,
@@ -132,7 +132,7 @@ insert into Hospital values
 	(null, 'Hospital de Olhos e Clínicas - HOC', 2),
 	(null, 'Santa Casa', 1),
 	(null, 'Hospital Santos Dumont', 3),
-    (null, 'AME', 4),
+    (null, 'AME Caraguatatuba', 4),
     (null, 'Centro Médico São Camilo', 5),
     (null, 'Madre Tereza - CEAMI', 6);
 
