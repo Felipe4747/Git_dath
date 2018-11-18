@@ -23,7 +23,6 @@ CREATE TABLE Usuario (
     nasc DATE NOT NULL,
     tipo_s ENUM('A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-') NOT NULL,
     sexo ENUM('Masculino', 'Feminino') NOT NULL,
-    convenio boolean not null,
     id_convenio int,
     constraint fk_ConvenioUsuario foreign key(id_convenio) references Convenio(id)
 );
@@ -36,9 +35,9 @@ create table Medico(
 );
 
 insert into Medico values
-	(default, 'Aline Fernanda', 2701),
-	(default, 'Denis Campos', 7498),
-	(default, 'Evelyn Pedrosa', 6492);
+	(null, 'Aline Fernanda', 2701),
+	(null, 'Denis Campos', 7498),
+	(null, 'Evelyn Pedrosa', 6492);
 
 create table MedicoConvenio(
 	id_medico int not null,
@@ -158,7 +157,7 @@ create table Exacon (
 );
 
 create table Exa(
-	id int auto_increment not null auto_increment,
+	id int not null auto_increment,
 	id_exacon int not null,
     tipo varchar(100) not null,
     primary key(id),

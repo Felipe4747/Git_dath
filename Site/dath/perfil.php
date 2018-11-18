@@ -19,6 +19,25 @@
 </head>
 
 <body>
+    <?php
+    if (isset($_SESSION["alert"])) {
+        $alerta = $_SESSION["alert"];
+        echo "<script>
+        $( document ).ready(function() {{$alerta}});
+        </script>";
+    }
+    unset($_SESSION["alert"]);
+    ?>
+    <?php
+    include('conexao.php');
+    $Id = $_SESSION["id"];
+    $sql = "delete exa, exacon from exa
+    right join exacon on exacon.id = exa.id_exacon
+	where exacon.id_usuario = '$Id' and exacon.horario > now()";
+    $result = $conn->prepare($sql);
+    $result->execute();
+    
+    ?>
     <!--Navbar-->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top" style="background-color: #c00">
         <div class="container">
@@ -92,13 +111,13 @@
                 <div class="media p-3">
                     <img src="img/exemplo.png" class="mr-3 mt-3 rounded-circle my-auto img-fluid" style="width:200px;">
                     <div class="media-body my-auto">
-                        <h2 style="font-size: 3rem" class="my-0">
+                        <h2 style="font-size: 3rem" class="my-0 masthead-heading">
                             <?php echo $_SESSION['usuario']; ?>
                         </h2>
-                        <p style="font-size: 2rem" class="my-0">
+                        <p style="font-size: 2rem" class="my-0 masthead-heading">
                             <?php echo $_SESSION['email']; ?>
                         </p>
-                        <p style="font-size: 1.5rem" class="my-0">
+                        <p style="font-size: 1.5rem" class="my-0 masthead-heading">
                             <?php echo 'Id: ' . $_SESSION['id']; ?>
                         </p>
                     </div>
@@ -107,7 +126,7 @@
         </div>
     </section>
     <!--Tabela exames-->
-    <div class="container col-sm-8">
+    <div class="container col-sm-10">
         <h1 class="text-center mb-4 mt-4 display-4">Exames</h1>
         <input class="form-control form-control-lg mb-4" id="pesquisaexa" type="text" placeholder="Pesquisar exames...">
         <div class="table-wrapper-scroll-y">
@@ -166,7 +185,7 @@
         </div>
     </div>
     <!--Hospitalzinho img-->
-    <div class="jumbotron jumbotron-fluid mb-0" style="height: 10rem; background-image: url(img/albert.jpg); background-attachment: fixed; background-position: center; background-size: cover">
+    <div class="jumbotron jumbotron-fluid mb-0" style="height: 10rem; background-image: url(img/medico1.jpg); background-attachment: fixed; background-position: center; background-size: cover">
     </div>
     <div class="container col-sm-8">
         <h1 class="text-center mb-4 mt-4 display-4">Consultas</h1>
@@ -223,47 +242,73 @@
             </table>
         </div>
     </div>
-    <div class="jumbotron jumbotron-fluid mb-0" style="height: 10rem; background-image: url(img/albert.jpg); background-attachment: fixed; background-position: center; background-size: cover">
+    <div class="jumbotron jumbotron-fluid mb-0" style="height: 10rem; background-image: url(img/medico2.jpg); background-attachment: fixed; background-position: center; background-size: cover">
     </div>
     <!--Agendar-->
     <section class="container-fluid bg-light" id="agendar" style="padding: 30px;">
-        <div class="container col-sm-10">
+        <div class="container col-sm-6">
             <h1 class="text-center mb-4 display-4">Agendar</h1>
             <div class="col-sm-12 mx-auto bg-white rounded p-4 border">
                 <form method="post" action="exacon.php">
                     <div class="form-row">
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <label for="tipo">Tipo:</label><br>
-                            <select name="tipo" class="custom-select">
+                            <select name="tipo" class="custom-select" id="tipo">
                                 <option selected>Exame</option>
                                 <option>Consulta</option>
                             </select>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6" id="examede">
+                            <label for="tipo">De:</label><br>
+                            <input type="text" class="form-control" id="tipoexa" placeholder="Exame de..." name="tipoexa" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+                            <label>País:</label><br>
+                            <select name="estado" class="custom-select">
+                                <option selected>Brasil</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Estado:</label><br>
+                            <select name="estado" class="custom-select">
+                                <option selected>São Paulo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+                            <label>Cidade:</label><br>
+                            <select name="cidade" class="custom-select">
+                                <option selected>Caraguatatuba</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-6">
                             <label for="hospital">Hospital:</label><br>
                             <select name="hospital" class="custom-select">
-                                <option selected>UNIMED</option>
-                                <option>Casa de Saúde Stella Maris</option>
-                                <option>Hospital Santos Drummond</option>
-                                <option>AME Caraguatatuba</option>
-                                <option>Centro Médico São Camilo</option>
-                                <option>Clínica Uroproct</option>
-                                <option>Madre Tereza CEAMI</option>
+                                <option value="1" selected>Casa de Saúde Stella Maris</option>
+                                <option value="2">Hospital de Olhos e Clínicas - HOC</option>
+                                <option value="3">Santa Casa</option>
+                                <option value="4">Hospital Santos Dumont</option>
+                                <option value="5">AME Caraguatatuba</option>
+                                <option value="6">Centro Médico São Camilo</option>
+                                <option value="7">Madre Tereza CEAMI</option>
                             </select>
                         </div>
-                        <div class="form-group col-sm-3">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
                             <label for="medico">Médico:</label><br>
                             <select name="medico" class="custom-select">
-                                <option selected>Johnny Bravo</option>
-                                <option>Dr. Tortoni</option>
-                                <option>Jailson Mendes Ginecologista</option>
-                                <option>Dr. Rey</option>
-                                <option>Jair Açougueiro</option>
+                                <option value="1" selected>Aline Fernanda</option>
+                                <option value="2">Denis Campos</option>
+                                <option value="3">Evelyn Pedrosa</option>
                             </select>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <label for="nasc">Horário:</label>
-                            <input type="datetime-local" class="form-control" id="nasc" name="horario" required>
+                            <input type="datetime-local" class="form-control" id="nasc" name="horario" max="2999-12-31" required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-danger btn-lg btn-block">Agendar</button>
@@ -304,6 +349,17 @@
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
+        });
+
+        $("select#tipo").change(function() {
+            if ($(this).val() == "Consulta") {
+                $("#examede").fadeOut("fast", function() {});
+                $("#tipoexa").removeAttr("required");
+                $("tipoexa").val() = "";
+            } else {
+                $("#examede").fadeIn("fast", function() {});
+                $("#tipoexa").Attr("required");
+            }
         });
 
     </script>

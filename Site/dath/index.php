@@ -15,27 +15,24 @@
     <title>DATH</title>
 </head>
 
-<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<body data-spy="scroll" data-target=".navbar" data-offset="50" class="bg-light">
 
     <?php include("conexao.php"); ?>
     <?php session_start(); ?>
     <?php
     if (isset($_SESSION["alert"])) {
-        if ($_SESSION["alert"] == true) {
-        echo '<script>
-        $( document ).ready(function() {
-            alert("Email ou CPF já cadastrado!");
-        });
-        </script>';
-        }
-    $_SESSION["alert"] = false;
+        $alerta = $_SESSION["alert"];
+        echo "<script>
+        $( document ).ready(function() {{$alerta}});
+        </script>";
     }
+    unset($_SESSION["alert"]);
 ?>
     <!--Header-->
     <div id="home" class="jumbotron jumbotron-fluid mb-0" style="background-image: url(img/pattern.jpg); background-attachment: fixed;">
         <div class="container-fluid text-center">
-            <div class="masthead-brand display-1">Bem vindo!</div>
-            <h1 class="masthead-heading">Comece a usar nossos serviços!</h1>
+            <div class="masthead-brand display-1" style="user-select: none;">Bem vindo!</div>
+            <h1 class="masthead-heading" style="user-select: none;">Comece a usar nossos serviços!</h1>
             <ul class="list-inline mt-4">
                 <li>
                     <a href="#cadastro" class="btn btn-danger btn-lg">Cadastro</a>
@@ -95,30 +92,27 @@
     <!--Carousel-->
     <div id="carousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#carousel" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel" data-slide-to="1"></li>
-            <li data-target="#carousel" data-slide-to="2"></li>
+            <li data-target="#carousel" data-slide-to="0" class="active" style="box-shadow: 0px 0px 3px gray;"></li>
+            <li data-target="#carousel" data-slide-to="1" style="box-shadow: 0px 0px 3px gray;"></li>
+            <li data-target="#carousel" data-slide-to="2" style="box-shadow: 0px 0px 3px gray;"></li>
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="img/bg.png" alt="Primeiro slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h2>Primeiro slide!</h2>
-                    <p>Texto texto texto</p>
+                <img class="d-block w-100" src="img/slide1.png" alt="Primeiro slide">
+                <div class="carousel-caption d-none d-md-block w-25 mx-auto rounded bg-transparent">
+                    <h1>Cadastre-se!</h1>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="img/bg.png" alt="Segundo slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h2>Segundo slide!</h2>
-                    <p>Texto texto texto</p>
+                <img class="d-block w-100" src="img/slide2.png" alt="Segundo slide">
+                <div class="carousel-caption d-none d-md-block w-25 mx-auto rounded bg-transparent">
+                    <h1>Agende!</h1>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="img/bg.png" alt="Terceiro slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h2>Terceiro slide!</h2>
-                    <p>Texto texto texto</p>
+                <img class="d-block w-100" src="img/slide3.png" alt="Terceiro slide">
+                <div class="carousel-caption d-none d-md-block w-25 mx-auto rounded bg-transparent">
+                    <h1>Cuide-se!</h1>
                 </div>
             </div>
         </div>
@@ -161,7 +155,7 @@
         </div>
     </div>
     <!--Intro-->
-    <div class="jumbotron jumbotron-fluid mb-0" style="height: 10rem; background-image: url(img/albert.jpg); background-attachment: fixed; background-position: center; background-size: cover"></div>
+    <div class="jumbotron jumbotron-fluid mb-0 mt-5 mx-auto rounded" style="height: 10rem; background-image: url(img/albert.jpg); background-attachment: fixed; background-position: center; background-size: cover; width: 90%;"></div>
     <!--Cadastro-->
     <section class="container-fluid bg-light" id="cadastro" style="padding: 30px;">
         <div class="container">
@@ -229,7 +223,7 @@
                             <label for="conv">Convênio:</label><br>
                             <select name="conv" class="custom-select">
                                 <option selected>Nenhum</option>
-                                <option>--</option>
+                                <option value="1">Unimed</option>
                             </select>
                         </div>
                     </div>
@@ -249,7 +243,7 @@
         </div>
     </section>
     <!--Hospitalzinho img-->
-    <div class="jumbotron jumbotron-fluid mb-0" style="height: 10rem; background-image: url(img/albert.jpg); background-attachment: fixed; background-position: center; background-size: cover">
+    <div class="jumbotron jumbotron-fluid mb-0" style="height: 10rem; background-image: url(img/medico3.jpg); background-attachment: fixed; background-position: center; background-size: cover">
     </div>
     <!--Sobre-->
     <section class="container-fluid bg-light" id="sobre" style="padding: 30px;">

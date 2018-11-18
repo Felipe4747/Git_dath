@@ -8,6 +8,7 @@
         $Tel = $_POST["tel"];
         $CPF = $_POST["cpf"];
         $Nasc = $_POST["nasc"];
+        $_SESSION["Nasc"] = $_POST["nasc"];
         $Sangue = $_POST["sangue"];
         $Sexo = $_POST["sexo"];
 
@@ -22,7 +23,19 @@
         $result->execute();
         $cpfcount = $result->fetchColumn();
         
-        if ($emailcount == 0 & $cpfcount == 0) {
+        if ($emailcount != 0 | $cpfcount != 0 | date("Y-m-d", strtotime('+18 years', strtotime($Nasc))) > date("Y-m-d")) {
+            $_SESSION["alert"] = "";
+            if ($emailcount != 0) {
+            $_SESSION["alert"] .= 'alert("Email já cadastrado!");';
+            }
+            if ($cpfcount != 0) {
+            $_SESSION["alert"] .= 'alert("CPF já cadastrado!");';
+            }
+            if (date("Y-m-d", strtotime('+18 years', strtotime($Nasc))) > date("Y-m-d")) {
+            $_SESSION["alert"] .= 'alert("Você deve ter mais de 18 anos para utilizar o site!");';
+            }
+            header('Location: index.php#cadastro');
+        } else {
             try {
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "insert into usuario (nome, email, senha, tel, cpf, nasc, tipo_s, sexo)
@@ -40,20 +53,12 @@
             $_SESSION['email'] = $Email;
             $_SESSION['id'] = $Id;
             header('Location: perfil.php');
-            $_SESSION["alert"] = false;
-        }
-        catch(PDOException $e)
-        {
-            echo 'erro aqui rapaz';
-        }
-        } else {
-            
-            header('Location: index.php#cadastro');
-            $_SESSION["alert"] = true;
+            }
+            catch(PDOException $e){
+                echo 'erro aqui rapaz';
+            }
         }
 
-
-        
-        }
-        $conn = null;
-    ?>
+    }
+    $conn = null;
+?>
