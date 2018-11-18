@@ -11,7 +11,7 @@ create table Convenio(
 );
 
 insert into Convenio values
-	(null, 'Unimed');
+	(null, 'Pessoal','Unimed');
 
 CREATE TABLE Usuario (
     id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -41,8 +41,8 @@ insert into Medico values
 	(default, 'Evelyn Pedrosa', 6492);
 
 create table MedicoConvenio(
-	id_medico int not null auto_increment,
-    id_convenio int not null auto_increment,
+	id_medico int not null,
+    id_convenio int not null,
     constraint fk_MedicoConvenio foreign key(id_medico) references Medico(id),
     constraint fk_ConvenioMedico foreign key(id_convenio) references Convenio(id)
 );
@@ -131,15 +131,15 @@ create table Hospital (
 insert into Hospital values
 	(null, 'Casa de Saúde Stella Maris', 1),
 	(null, 'Hospital de Olhos e Clínicas - HOC', 2),
-	(null, 'Santa Casa', 1, null),
+	(null, 'Santa Casa', 1),
 	(null, 'Hospital Santos Dumont', 3),
     (null, 'AME', 4),
     (null, 'Centro Médico São Camilo', 5),
     (null, 'Madre Tereza - CEAMI', 6);
 
 create table HospitalConvenio(
-	id_hospital int not null auto_increment,
-    id_convenio int not null auto_increment,
+	id_hospital int not null,
+    id_convenio int not null,
     constraint fk_HospitalConvenio foreign key(id_hospital) references Hospital(id),
     constraint fk_ConvenioHospital foreign key(id_convenio) references Convenio(id)
 );
