@@ -252,7 +252,9 @@
                 <h1 class="text-center mb-4 display-4">Sobre</h1>
                 <div class="row">
                     <div class="col-sm-6">
-                        <p class="text-justify lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p class="lead text-justify">Visando a praticidade e a agilidade nas recepções de clínicas médicas e postos de saúde, o <b>C.E.M., Consultas e Exames Médicos</b>, foi elaborado exclusivamente para facilitar a vida dos empregados e usuários da rede de saúde de Caraguatatuba.</p>
+                        <p class="lead text-justify">O sistema consiste em agendar exames e consultas de um modo mais rápido e simples. Diminuindo as filas de espera e a superlotação de locais de atendimentos voltados à saúde, para o agendamento de consultas e exames.</p>
+                        <p class="lead text-danger font-weight-bold">Seja bem-vindo à nossa plataforma e aproveite os recursos que preparamos para você!</p>
                     </div>
                     <div class="col-sm-6">
                         <img src="img/logosobre.png" class="rounded img-thumbnail">

@@ -33,7 +33,7 @@
     $Id = $_SESSION["id"];
     $sql = "delete exa, exacon from exa
     right join exacon on exacon.id = exa.id_exacon
-	where exacon.id_usuario = '$Id' and exacon.horario > now()";
+	where exacon.id_usuario = '$Id' and exacon.horario < now()";
     $result = $conn->prepare($sql);
     $result->execute();
     
